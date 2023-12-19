@@ -27,12 +27,34 @@ public class ServletExample extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter writer = response.getWriter();
-		writer.append(" <html><body> benvenuto nella servlet</body></html> ");
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Recupera i parametri dalla richiesta
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
+        String sesso = request.getParameter("sesso");
+        String luogoNascita = request.getParameter("luogo-nascita");
+        String citta = request.getParameter("citta");
+        String dataNascita = request.getParameter("data-nascita"); 
+        String codiceFiscale = request.getParameter("codice-fiscale");
+        String password = request.getParameter("password");
+        String fonte = request.getParameter("fonte");
+
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+
+        try (PrintWriter out = response.getWriter()) {
+            out.println("Nome: " + nome);
+            out.println("Cognome: " + cognome);
+            out.println("Sesso: " + sesso);
+            out.println("Luogo di Nascita: " + luogoNascita);
+            out.println("Città: " + citta);
+            out.println("Data di Nascita: " + dataNascita);
+            out.println("Codice Fiscale: " + codiceFiscale);
+            out.println("Password: " + password);
+            out.println("Fonte: " + fonte);
+        }
+    }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
